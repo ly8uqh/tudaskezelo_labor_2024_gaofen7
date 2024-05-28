@@ -17,7 +17,8 @@ def verify(args):
     wandb.init(project='test2', name='test2')
     
     #load images
-    filelist = glob.glob('/home/c_dl_bm/banmarton/test2/4band/Train/image/*.tif')
+    #filelist = glob.glob('/home/c_dl_bm/banmarton/test2/4band/Train/image/*.tif')
+    filelist = glob.glob('/home/c_dl_bm/banmarton/test2/4band/Val/image/*.tif')
     Xtrain = np.array([np.array(Image.open(fname)) for fname in filelist])
     filelist = glob.glob('/home/c_dl_bm/banmarton/test2/4band/Test/image/*.tif')
     Xtest = np.array([np.array(Image.open(fname)) for fname in filelist])
@@ -25,7 +26,8 @@ def verify(args):
     print("Shape Xtest:", np.shape(Xtest))
 
     #load labels
-    filelist = glob.glob('/home/c_dl_bm/banmarton/test2/4band/Train/label/*.tif')
+    #filelist = glob.glob('/home/c_dl_bm/banmarton/test2/4band/Train/label/*.tif')
+    filelist = glob.glob('/home/c_dl_bm/banmarton/test2/4band/Val/label/*.tif')
     ytrain = np.array([np.expand_dims(Image.open(fname), axis=2) for fname in filelist])  
     filelist = glob.glob('/home/c_dl_bm/banmarton/test2/4band/Test/label/*.tif')
     ytest = np.array([np.expand_dims(Image.open(fname), axis=2) for fname in filelist])
