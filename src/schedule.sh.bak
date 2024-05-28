@@ -1,0 +1,20 @@
+#!/bin/bash
+
+#SBATCH --job-name="test2"
+#SBATCH --partition=gpu
+#SBATCH --gres=gpu:2
+#SBATCH --mem-per-gpu=80G
+#SBATCH --account=c_dl_brats
+#SBATCH --time=03:00:00
+#SBATCH --output=/project/c_dl_brats/banmarton/test2/slurm_log/stdout-%x_%j.log
+#SBATCH --error=/project/c_dl_brats/banmarton/test2/slurm_log/stderr-%x_%j.log
+
+# set conda environment name
+eval "$(conda shell.bash hook)"
+MY_CONDA_ENV="geo3"
+conda init bash 
+conda activate $MY_CONDA_ENV
+
+export WANDB_API_KEY=1b3379bb1f53c415083377d6e778ad51d63f0c77
+
+srun python3 /home/c_dl_bm/banmarton/test2/src/train.py
